@@ -370,7 +370,8 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
                       kSecAttrService, 
                       kSecAttrLabel, 
                       kSecAttrAccount, 
-                      kSecValueData, 
+                      kSecValueData,
+                      kSecAttrAccessible,
                       nil] autorelease];
 		
 		NSArray *objects = [[[NSArray alloc] initWithObjects: (NSString *) kSecClassGenericPassword, 
@@ -378,6 +379,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
                          serviceName,
                          username,
                          [password dataUsingEncoding: NSUTF8StringEncoding],
+                         (__bridge id)kSecAttrAccessibleAfterFirstUnlock,
                          nil] autorelease];
 		
 		NSDictionary *query = [[[NSDictionary alloc] initWithObjects: objects forKeys: keys] autorelease];			
